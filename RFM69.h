@@ -216,6 +216,8 @@ class RFM69 {
     void writeReg(uint8_t addr, uint8_t val);
     void readAllRegs();
     void readAllRegsCompact();
+    void setResetPin(uint8_t pin){resetPin = pin;};
+    void resetRadio();
 
   protected:
     static void isr0();
@@ -297,6 +299,7 @@ class RFM69 {
     uint8_t _idleListenCoef;
     uint8_t _idleListenResolution;
     uint32_t _listenCycleDurationUs;
+    uint8_t _hasResetPin = false;
  
 #endif
 };
