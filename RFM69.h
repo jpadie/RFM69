@@ -188,7 +188,7 @@ class RFM69 {
                 : RFM69(slaveSelectPin, interruptPin, isRFM69HW){};
 
     RFM69(uint8_t slaveSelectPin=RF69_SPI_CS, uint8_t interruptPin=RF69_IRQ_PIN, bool isRFM69HW=false);
-
+    void setSPIPins(uint8_t SCK, uint8_t MISO, uint8_t MOSI){_SCK = SCK; _MISO = MISO; _MOSI = MOSI;};
     bool initialize(uint8_t freqBand, uint16_t ID, uint8_t networkID=1);
     void setAddress(uint16_t addr);
     void setNetwork(uint8_t networkID);
@@ -228,6 +228,10 @@ class RFM69 {
     uint8_t _interruptPin;
     uint8_t _interruptNum;
     uint16_t _address;
+    int8_t _SCK = -1;
+    int8_t _MISO = -1;
+    int8_t _MOSI = -1;
+ 
     bool _promiscuousMode;
     uint8_t _powerLevel;
     bool _isRFM69HW;
@@ -293,6 +297,7 @@ class RFM69 {
     uint8_t _idleListenCoef;
     uint8_t _idleListenResolution;
     uint32_t _listenCycleDurationUs;
+ 
 #endif
 };
 
